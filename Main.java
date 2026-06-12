@@ -6,6 +6,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
+        // The user's side count decides which shape builder method should collect details.
         System.out.println("=== Shape Calculator ===");
         System.out.println("Enter the number of sides for your shape:");
         System.out.println("  0 = Circle");
@@ -17,6 +18,7 @@ public class Main {
 
         int sides = scanner.nextInt();
 
+        // Builds the correct Shape subclass while keeping the main method focused on program flow.
         Shape shape = switch (sides) {
             case 0 -> buildCircle(scanner);
             case 3 -> buildTriangle(scanner);
@@ -47,6 +49,7 @@ public class Main {
         System.out.println("\nYou selected: Circle");
         System.out.print("Enter the radius: ");
         double radius = scanner.nextDouble();
+        // Returns a Circle because circles use radius instead of polygon side counts.
         return new Circle(radius);
     }
 
@@ -66,6 +69,7 @@ public class Main {
         double a2 = scanner.nextDouble();
         System.out.print("  Angle 3: ");
         double a3 = scanner.nextDouble();
+        // Triangle receives both sides and angles so its constructor can validate the shape.
         return new Triangle(s1, s2, s3, a1, a2, a3);
     }
 
@@ -84,10 +88,12 @@ public class Main {
         double sideLength = scanner.nextDouble();
         System.out.print("Enter the apothem (center-to-midpoint-of-side distance): ");
         double apothem = scanner.nextDouble();
+        // Regular pentagon area is based on side length and apothem.
         return new Pentagon(sideLength, apothem);
     }
 
     private static GenericPolygon buildGenericPolygon(Scanner scanner, int sides) {
+        // Gives common polygon names to 6-8 sides, then falls back to a general label.
         String name = switch (sides) {
             case 6 -> "Hexagon";
             case 7 -> "Heptagon";
